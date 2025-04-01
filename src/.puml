@@ -1,0 +1,36 @@
+@startuml
+class GameBoard {
+    - board: char[][]
+    - ships: List<Ship>
+    + isHit(row, col): boolean
+    + isShipSunk(row, col): boolean
+    + allShipsSunk(): boolean
+}
+
+class Ship {
+    - row: int
+    - col: int
+    - size: int
+    - horizontal: boolean
+    + contains(r, c): boolean
+    + isSunk(board): boolean
+}
+
+class BattleshipGame {
+    - gameBoard: GameBoard
+    - missCount: int
+    - strikeCount: int
+    + processMove(row, col): void
+    + checkGameOver(): void
+}
+
+class BattleshipGUI {
+    - game: BattleshipGame
+    + actionPerformed(ActionEvent)
+    + updateUI(): void
+}
+
+GameBoard --> Ship
+BattleshipGame --> GameBoard
+BattleshipGUI --> BattleshipGame
+@enduml
